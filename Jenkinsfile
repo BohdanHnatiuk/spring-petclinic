@@ -9,11 +9,11 @@ pipeline {
     }
     stages {
 
-    stage('Compile') {
-       steps {
+      stage('Compile') {
+         steps {
          sh 'mvn compile' //only compilation of the code
-       }
-    }
+         }
+      }
     stage('Test') {
       steps {
         sh '''
@@ -23,6 +23,7 @@ pipeline {
         ''' 
         //if the code is compiled, we test and package it in its distributable format; run IT and store in local repository
       }
+    }
         stage('Build Docker Image') {
             when {
                 branch 'master'
