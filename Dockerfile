@@ -2,5 +2,4 @@ FROM java:8
 VOLUME /tmp
 ADD target/spring-petclinic-2.4.5.jar app.jar
 EXPOSE 8080
-#ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar", "--spring.profiles.active=docker"]
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
