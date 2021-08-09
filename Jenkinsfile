@@ -6,6 +6,9 @@ pipeline {
     } 
     environment {
         DOCKER_IMAGE_NAME = "bohdanhnatiuk/petclinic"
+        //registry = "bohdanhnatiuk/petclinic" 
+        registryCredential = 'docker_hub_login' 
+        //dockerImage = ''         
     }
     stages {
 
@@ -31,9 +34,9 @@ pipeline {
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
-                    app.inside {
-                        sh 'echo Hello, World!'
-                    }
+                   // app.inside {
+                   //     sh 'echo Hello, World!'
+                   // }
                 }
             }
         }
@@ -43,7 +46,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+                    docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
