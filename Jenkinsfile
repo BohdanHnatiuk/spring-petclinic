@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         maven 'mvn'
-        jdk 'jdk9'
+        jdk 'jdk'
     } 
     environment {
         DOCKER_IMAGE_NAME = "bohdanhnatiuk/petclinic"
