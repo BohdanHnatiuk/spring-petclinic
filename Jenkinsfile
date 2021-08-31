@@ -20,7 +20,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                mvn clean install  
+                mvn clean install -DskipTests 
                 ls
                 pwd
                 ''' 
