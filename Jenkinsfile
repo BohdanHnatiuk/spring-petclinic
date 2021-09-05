@@ -1,24 +1,5 @@
 pipeline {
-   // agent any
-    agent {
-    kubernetes {
-    yaml """\
-      apiVersion: v1
-      kind: Pod
-      metadata:
-        labels:
-          deployer: java-app
-      spec:
-        containers:
-        - name: helm
-          image: alpine/helm
-          command:
-          - cat
-          tty: true
-        serviceAccount: jenkins
-      """.stripIndent()     
-    }
-  }
+    agent any
     tools {
         maven 'mvn'
         jdk 'jdk'
@@ -72,22 +53,6 @@ pipeline {
                 }
             }
         }
-        stage('DEPLOY JAVA APP') {
-          steps {
-              container ('helm') {
-                  script {
-                      sh """
-                      helm repo add myrepo  https://bohdanhnatiuk.github.io/charts/
-                      helm --debug install \
-                              --namespace test \
-                              petclinic myrepo/petclinic \
-                              --set service.type=NodePort \
-                              --version 0.1.0
-                      """
-                  }
-              }
-          }
-      }
 
     }
 }
