@@ -55,7 +55,7 @@ pipeline {
         }
         stage('Docker Deploy'){
             steps{
-              ansiblePlaybook credentialsId: 'petclinic-server', disableHostKeyChecking: true, extras:  "-e DOCKER_TAG=${BUILD_NUMBER}", installation: 'Ansible', inventory: 'dev.inv', playbook: 'deploy_docker.yaml'
+              ansiblePlaybook credentialsId: 'petclinic-server', disableHostKeyChecking: true, extras:  "-e DOCKER_TAG=${BUILD_NUMBER}", installation: 'Ansible', inventory: 'prod.inv', playbook: 'deploy_docker.yaml'
             }
         }
     }
