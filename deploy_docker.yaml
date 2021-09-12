@@ -8,7 +8,7 @@
     - name: pulling docker image and run container
       docker_container:
         name: petclinic
-        image: bohdanhnatiuk/petclinic:latest
+        image: bohdanhnatiuk/petclinic:{{DOCKER_TAG}}
         state: started
         ports:
         - "80:8080"
