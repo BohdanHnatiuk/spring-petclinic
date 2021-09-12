@@ -1,0 +1,14 @@
+---
+- name: Install Docker and Docker Compose on CentOS
+  hosts: prod
+  become: true
+
+  tasks:
+ 
+    - name: pulling docker image and run container
+      docker_container:
+        name: petclinic
+        image: bohdanhnatiuk/petclinic:latest
+        state: started
+        ports:
+        - "8080:8080"
