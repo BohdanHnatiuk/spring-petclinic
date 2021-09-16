@@ -4,7 +4,24 @@
   become: true
 
   tasks:
- 
+    - name: Install some dependencies
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - device-mapper-persistent-data
+        - lvm2
+        
+    - name: Install yum-utils
+      raw: "yum -y install yum-utils"
+
+
+    - name: Install pip
+      raw: "sudo yum install python-pip"
+
+    - name: Install pip depend
+      raw: "sudo pip install docker==4.4.4 websocket-client==0.32.0"
+      
     - name: pulling docker image and run container
       docker_container:
         name: petclinic
