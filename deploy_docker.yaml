@@ -19,8 +19,8 @@
     - name: Install pip
       raw: "sudo yum install python-pip"
 
- #   - name: Install pip depend
- #     raw: "sudo pip install docker==4.4.4 websocket-client==0.32.0"
+    - name: Install pip depend
+      raw: "sudo pip3 install docker==4.4.4 websocket-client==0.32.0"
       
     - name: pulling docker image and run container
       docker_container:
