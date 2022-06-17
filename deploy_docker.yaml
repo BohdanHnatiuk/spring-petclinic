@@ -24,8 +24,8 @@
     - name: Install pip depend
       raw: "sudo pip3 install docker websocket-client==0.32.0"
 
-    - name: Docker Login
-      raw: "docker login -u {{docker_login}} -p {{docker_password}}"
+#    - name: Docker Login
+#      raw: "docker login -u {{docker_login}} -p {{docker_password}}"
     - name: Docker pull new image
       raw: "docker pull bohdanhnatiuk/petclinic:latest"
     - name: Docker stop container
