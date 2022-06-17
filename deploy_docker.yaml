@@ -14,18 +14,39 @@
         
     - name: Install yum-utils
       raw: "yum -y install yum-utils"
-
-
-    - name: Install pip
-      raw: "sudo yum install python-pip"
-
-    - name: Install pip depend
-      raw: "sudo pip3 install docker==4.4.4 websocket-client==0.32.0"
-      
-    - name: pulling docker image and run container
-      docker_container:
-        name: petclinic
-        image: bohdanhnatiuk/petclinic:{{DOCKER_TAG}}
+    - name: " Starting and Enabling Docker service"
+      service:
+        name: docker
         state: started
-        ports:
-        - "80:8080"
+        enabled: yes
+    - name: Install pip
+      raw: "sudo yum install python3-pip"
+    - name: Install pip depend
+      raw: "sudo pip3 install docker websocket-client==0.32.0"
+
+    - name: Docker Login
+      raw: "docker login -u {{docker_login}} -p {{docker_password}}"
+    - name: Docker pull new image
+      raw: "docker pull bohdanhnatiuk/petclinic:latest"
+    - name: Docker stop container
+      raw: "docker kill $(docker ps -a -q)"
+    - name: Docker stop container
+      raw: "docker rm $(docker ps -a -q)"
+    - name: Docker run new container
+      raw: "docker run -d -p 80:8080 --name petclinic bohdanhnatiuk/petclinic:latest"
+    - name: Docker remove images
+      raw: "docker image prune -a -f"
+
+#    - name: Install pip
+#      raw: "sudo yum install python-pip"
+
+#    - name: Install pip depend
+#      raw: "sudo pip3 install docker==4.4.4 websocket-client==0.32.0"
+      
+#    - name: pulling docker image and run container
+#      docker_container:
+#        name: petclinic
+#        image: bohdanhnatiuk/petclinic:{{DOCKER_TAG}}
+#        state: started
+#        ports:
+#        - "80:8080"
