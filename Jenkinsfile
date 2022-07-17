@@ -6,9 +6,7 @@ pipeline {
     } 
     environment {
         DOCKER_IMAGE_NAME = "bohdanhnatiuk/petclinic"
-        //registry = "bohdanhnatiuk/petclinic" 
-        registryCredential = 'docker_hub_login' 
-        //dockerImage = ''         
+        registryCredential = 'docker_hub_login'        
     }
     stages {
 
