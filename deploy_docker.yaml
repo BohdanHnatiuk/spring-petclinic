@@ -4,25 +4,25 @@
   become: true
 
   tasks:
-    - name: Install some dependencies
-      yum:
-        name: "{{ item }}"
-        state: latest
-      loop:
-        - device-mapper-persistent-data
-        - lvm2
+#    - name: Install some dependencies
+#      yum:
+#        name: "{{ item }}"
+#        state: latest
+#      loop:
+#        - device-mapper-persistent-data
+#        - lvm2
         
-    - name: Install yum-utils
-      raw: "yum -y install yum-utils"
-    - name: " Starting and Enabling Docker service"
-      service:
-        name: docker
-        state: started
-        enabled: yes
-    - name: Install pip
-      raw: "sudo yum install python3-pip"
-    - name: Install pip depend
-      raw: "sudo pip3 install docker websocket-client==0.32.0"
+#    - name: Install yum-utils
+#      raw: "yum -y install yum-utils"
+#    - name: " Starting and Enabling Docker service"
+#      service:
+#        name: docker
+#        state: started
+#        enabled: yes
+#    - name: Install pip
+#      raw: "sudo yum install python3-pip"
+#    - name: Install pip depend
+#      raw: "sudo pip3 install docker websocket-client==0.32.0"
 
 #    - name: Docker Login
 #      raw: "docker login -u {{docker_login}} -p {{docker_password}}"
